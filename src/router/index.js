@@ -2,7 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import GeneroView from '@/views/GeneroView.vue'
 import PelisGeneroViewVue from '@/views/PelisGeneroView.vue'
 import MovieDetailView from '@/views/MovieDetailView.vue'
-
+import EstrenosView from '@/views/EstrenosView.vue'
+import BestsView from '@/views/BestView.vue'
+import PopularesView from '@/views/PopularesView.vue'
+import CarteleraView from '@/views/CarteleraView.vue'
 
 
 const routes = [
