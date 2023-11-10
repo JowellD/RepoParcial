@@ -31,6 +31,16 @@ const routes = [
     name: 'Cartelera',
     component: CarteleraView
   },
+  {
+    path: '/Bests',
+    name: 'Bests',
+    component: BestsView
+  },
+  {
+    path: '/Estrenos',
+    name: 'Estrenos',
+    component: EstrenosView
+  },
 ]
 
 const router = createRouter({
