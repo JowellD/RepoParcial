@@ -21,12 +21,22 @@ const routes = [
     path: '/MovieDetail/:id',
     component: MovieDetailView,
   },
-  
+  {
+    path: '/Populares',
+    name: 'Populares',
+    component: PopularesView
+  },
+  {
+    path: '/Cartelera',
+    name: 'Cartelera',
+    component: CarteleraView
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
 
 export default router
