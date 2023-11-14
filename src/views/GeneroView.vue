@@ -7,11 +7,11 @@
         </div>
         <div class="row d-flex justify-content-evenly flex-wrap">
             <div class="d-flex tarjeta">
-                <div v-for="Genero in Generos" :key="Genero.id">
-                    <router-link :to="{name:'Gen-Peliculas',params:{id:Genero.id}}">
+                <div v-for="genre in genres" :key="genre.id">
+                    <router-link :to="{name:'Gen-Peliculas',params:{id:genre.id,name:genre.name }}">
                         <div class="card col-sm-4 me-4 mb-4">
-                            <p class="time-text"><span>{{ Genero.name }}</span></p>
-                            <p class="day-text">id: <span class="time-sub-text">{{ Genero.id }}</span></p>
+                            <p class="time-text"><span>{{ genre.name }}</span></p>
+                            <p class="day-text">id: <span class="time-sub-text">{{ genre.id }}</span></p>
                         </div>
                     </router-link>
                 </div>
@@ -57,12 +57,12 @@ export default {
     name: 'GeneroView',
     data() {
         return {
-            Generos: []
+            genres: []
         }
     },
     async created() {
-        this.Generos = await PelicService.getGenero()
-        console.log(this.Generos)
+        this.genres = await PelicService.getGenero()
+        console.log(this.genres)
     }
 }
 </script>

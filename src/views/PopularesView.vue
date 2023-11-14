@@ -9,26 +9,26 @@
       <div class="col d-flex flex-wrap">
         <div
           class="d-flex col mb-5 mx-6 justify-content-around"
-          v-for="Populares in Populare"
-          :key="Populares.id"
-        >
-          <router-link :to="{ path: '/MovieDetail/' + Populares.id }">
+          v-for="pop in popular"
+          :key="pop.id"
+    >
+          <router-link :to="{ path: '/MovieDetail/' + pop.id }">
             <div class="card">
               <div class="card-image">
                 <img
                   class="img"
                   :src="
-                    `https://image.tmdb.org/t/p/w500` + Populares.poster_path
+                    `${imagen}` + pop.poster_path
                   "
                   alt=""
                 />
                 <!-- {{ Cartelera.poster_path }} -->
               </div>
-              <div class="category">{{ Populares.title }}</div>
+              <div class="category">{{ pop.title }}</div>
               <div class="heading">
-                <strong>Popularidad: {{ Populares.popularity }}</strong>
+                <strong>Popularidad: {{ pop.popularity }}</strong>
                 <div class="author">
-                  Fecha: <span class="name">{{ Populares.release_date }}</span>
+                  Fecha: <span class="name">{{ pop.release_date }}</span>
                 </div>
               </div>
             </div>
@@ -65,7 +65,8 @@ export default {
     name: 'PopularesView',
     data() {
         return {
-            Populare: [],
+            popular: [],
+            imagen: "https://image.tmdb.org/t/p/w500",
             page: 1,
             totalPages: 1,
             itemsPerPage: 10, // Número de elementos por página
@@ -75,8 +76,8 @@ export default {
     async created() {
         const Generoid = this.$route.params.id;
         this.Peliculas = await PelicService.getGenPeliculas(Generoid)
-        this.Populare = await PelicService.getPopulares(this.page)
-        console.log(this.Populare)
+        this.popular = await PelicService.getPopulares(this.page)
+        console.log(this.popular)
     }
 }
 </script>

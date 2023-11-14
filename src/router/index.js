@@ -6,6 +6,10 @@ import EstrenosView from '@/views/EstrenosView.vue'
 import BestsView from '@/views/BestView.vue'
 import PopularesView from '@/views/PopularesView.vue'
 import CarteleraView from '@/views/CarteleraView.vue'
+import DescripcionView from '@/views/DescripcionView.vue'
+import GenerosView from '@/views/GenerosView.vue'
+import TrailerView from '@/views/TrailerView.vue'
+import ProductoraView from '@/views/ProductoraView.vue'
 
 
 const routes = [
@@ -15,7 +19,7 @@ const routes = [
     component: GeneroView,
   },
   {
-    path: '/Peliculas/:id',
+    path: '/Peliculas/:name-:id',
     name: 'Gen-Peliculas',
     component: PelisGeneroViewVue
   },
@@ -23,6 +27,28 @@ const routes = [
   {
     path: '/MovieDetail/:id',
     component: MovieDetailView,
+    children: [
+      {
+        path: 'Descripcion',
+        name: 'Descripcion',
+        component: DescripcionView
+      },
+      {
+        path: 'Generos',
+        name: 'Generos',
+        component: GenerosView
+      },
+      {
+        path: 'Productora',
+        name: 'Productora',
+        component: ProductoraView
+      },
+      {
+        path: 'Trailer',
+        name: 'Trailer',
+        component: TrailerView
+      },
+    ]
   },
   {
     path: '/Populares',
