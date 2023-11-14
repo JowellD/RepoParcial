@@ -3,38 +3,37 @@
     <div class="row d-flex justify-content-center">
       <div class="col-sm-9 col-md-8 mb-4">
         <h1>
-          <strong> {{ GPelicula.title }} </strong>
+          <strong> {{ movie_info.title }} </strong>
         </h1>
       </div>
     </div>
     <div class="row d-flex justify-content-evenly">
-      <div class="col-sm-6">
+      <div class="col-sm-6 mb-1">
         <div class="card-image">
           <img
-            class="img"
-            v-if="GPelicula.poster_path"
-            :src="`https://image.tmdb.org/t/p/w500` + GPelicula.poster_path"
+            class="imgs"
+            v-if="movie_info.poster_path"
+            :src="`${imagen}` + movie_info.poster_path"
             alt=""
           />
           <div class="author">
-            Fecha: <span class="name">{{ GPelicula.release_date }}</span>
+            Fecha: <span class="name">{{ movie_info.release_date }}</span>
           </div>
         </div>
       </div>
       <div class="col-sm-6">
         <router-link
-          :to="{ name: 'Descripcion', params: { id: GPelicula.id } }"
-        >
+          :to="{ name: 'Descripcion', params: { id: movie_info.id } }">
           <button class="shadow__btn2 btn1">Descripcion</button>
         </router-link>
-        <router-link :to="{ name: 'Generos', params: { id: GPelicula.id } }">
-          <!--:to="{ name: 'Generos', params: { id: GPelicula.id } }" -->
+        <router-link :to="{ name: 'Generos', params: { id: movie_info.id } }">
+          <!--:to="{ name: 'Generos', params: { id: movie_info.id } }" -->
           <button class="shadow__btn2 btn2">Generos</button>
         </router-link>
-        <router-link :to="{ name: 'Productora', params: { id: GPelicula.id } }">
+        <router-link :to="{ name: 'Productora', params: { id: movie_info.id } }">
           <button class="shadow__btn2 btn3">Productoras</button>
         </router-link>
-        <router-link :to="{ name: 'Trailer', params: { id: GPelicula.id } }">
+        <router-link :to="{ name: 'Trailer', params: { id: movie_info.id } }">
           <button class="shadow__btn">Trailer</button>
         </router-link>
         <router-view />
@@ -50,14 +49,15 @@ export default {
     name: 'MovieDetailView',
     data() {
         return {
-            GPelicula: {}
+            movie_info: {},
+            imagen: "https://image.tmdb.org/t/p/w500",
         };
     },
     async created() {
-        const peliculaId = this.$route.params.id;
-        this.GPelicula = await PelicService.getInfoMovie(peliculaId);
-        // var Imagen = this.GPelicula.poster_path
-        console.log(this.GPelicula)
+        const movieId = this.$route.params.id;
+        this.movie_info = await PelicService.getInfoMovie(movieId);
+        // var Imagen = this.movie_info.poster_path
+        console.log(this.movie_info)
     }
 }
 </script>

@@ -2,32 +2,32 @@
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div class="col-sm-8 mb-5">
-        <h1 class="text-success text-center Funciones">Estrenos</h1>
+        <h1 class="text-success text-center Funciones">Peliculas de Estrenos</h1>
       </div>
     </div>
     <div class="row d-flex justify-content-evenly">
       <div class="col d-flex flex-wrap">
         <div
           class="d-flex col mb-5 mx-6 justify-content-around"
-          v-for="Estreno in Estrenos"
-          :key="Estreno.id"
+          v-for="premiere in premieres"
+          :key="premiere.id"
         >
-          <router-link :to="{ path: '/MovieDetail/' + Estreno.id }">
+          <router-link :to="{ path: '/MovieDetail/' + premiere.id }">
             <div class="card">
               <div class="card-image">
                 <img
                   class="img"
-                  :src="`https://image.tmdb.org/t/p/w500` + Estreno.poster_path"
+                  :src="`${imagen}` + premiere.poster_path"
                   alt=""
                 />
                 <!-- {{ Cartelera.poster_path }} -->
               </div>
               <div class="text0">
-                <div class="category">{{ Estreno.title }}</div>
+                <div class="category">{{ premiere.title }}</div>
                 <div class="heading">
-                  <strong>Popularidad: {{ Estreno.popularity }}</strong>
+                  <strong>Popularidad: {{ premiere.popularity }}</strong>
                   <div class="author">
-                    Fecha: <span class="name">{{ Estreno.release_date }}</span>
+                    Fecha: <span class="name">{{ premiere.release_date }}</span>
                   </div>
                 </div>
               </div>
@@ -66,7 +66,8 @@ export default {
     name: 'EstrenosView',
     data() {
         return {
-            Estrenos: [],
+            premieres: [],
+            imagen: "https://image.tmdb.org/t/p/w500",
             page: 1,
             totalPages: 1,
             itemsPerPage: 10, // Número de elementos por página
@@ -76,8 +77,8 @@ export default {
     async created() {
         const Generoid = this.$route.params.id;
         this.Peliculas = await PelicService.getGenPeliculas(Generoid)
-        this.Estrenos = await PelicService.getEstrenos(this.page)
-        console.log(this.Estrenos)
+        this.premieres = await PelicService.getEstrenos(this.page)
+        console.log(this.premieres)
     }
 }
 </script>

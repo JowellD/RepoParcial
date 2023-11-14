@@ -2,7 +2,7 @@
   <div class="container-fluidr">
     <div class="row d-flex justify-content-center">
       <div class="col-sm-8 mb-5">
-        <h1 class="text-success text-center Funciones">Mejores Calificadas</h1>
+        <h1 class="text-success text-center Funciones">Peliculas Mejor Calificadas</h1>
       </div>
     </div>
     <div class="row d-flex justify-content-evenly">
@@ -17,7 +17,7 @@
               <div class="card-image">
                 <img
                   class="img"
-                  :src="`https://image.tmdb.org/t/p/w500` + Best.poster_path"
+                  :src="`${imagen}` + Best.poster_path"
                   alt=""
                 />
                 <!-- {{ Cartelera.poster_path }} -->
@@ -67,6 +67,7 @@ export default {
     data() {
         return {
             Bests: [],
+            imagen: "https://image.tmdb.org/t/p/w500",
             page: 1,
             totalPages: 1,
             itemsPerPage: 10, // Número de elementos por página

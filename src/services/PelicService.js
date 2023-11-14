@@ -1,5 +1,8 @@
 import axios from "axios"
 
+const Base = "https://api.themoviedb.org/3/"
+const Apikey = "492d218f089fd8c20e9c3a945b482a9f"
+
 function New_Date(old_date) {
     let months = [
         {id:1 , name: 'Enero'},
@@ -25,7 +28,7 @@ function New_Date(old_date) {
 }
 export default{
     async getGenero(){
-        return await axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO')
+        return await axios.get(`${Base}genre/movie/list?api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             return response.data.genres
         })
@@ -35,7 +38,7 @@ export default{
         })
     },  
     async getGenPeliculas(id){
-        return await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=492d218f089fd8c20e9c3a945b482a9f&language=esCO&with_genres=${id}`)
+        return await axios.get(`${Base}discover/movie?api_key=${Apikey}&language=esCO&with_genres=${id}`)
         .then(response =>{
             let Pelis = response.data.results
             for(let i=0; i < Pelis.length; i++) {
@@ -48,7 +51,7 @@ export default{
         })
     },
     async getInfoMovie(id){
-        return await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/${id}?api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             let Pelis = response.data
             for(let i=0; i < Pelis.length; i++) {
@@ -62,7 +65,7 @@ export default{
         })
     },
     async getCartelera(page){
-        return await axios.get(`https://api.themoviedb.org/3/movie/now_playing?page=${page}&api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/now_playing?page=${page}&api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             let Pelis = response.data.results
             for(let i=0; i < Pelis.length; i++) {
@@ -76,7 +79,7 @@ export default{
         })
     },
     async getPopulares(page){
-        return await axios.get(`https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/popular?page=${page}&api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             let Pelis = response.data.results
             for(let i=0; i < Pelis.length; i++) {
@@ -90,7 +93,7 @@ export default{
         })
     },
     async getBestCalificadas(page){
-        return await axios.get(`https://api.themoviedb.org/3/movie/now_playing?page=${page}&api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/now_playing?page=${page}&api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             let Pelis = response.data.results
             for(let i=0; i < Pelis.length; i++) {
@@ -104,7 +107,7 @@ export default{
         })
     },
     async getEstrenos(page){
-        return await axios.get(`https://api.themoviedb.org/3/movie/upcoming?page=${page}&api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/upcoming?page=${page}&api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             let Pelis = response.data.results
             for(let i=0; i < Pelis.length; i++) {
@@ -118,7 +121,7 @@ export default{
         })
     },
     async getTrailer(id){
-        return await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=492d218f089fd8c20e9c3a945b482a9f&language=es-CO`)
+        return await axios.get(`${Base}movie/${id}/videos?api_key=${Apikey}&language=es-CO`)
         .then(response =>{
             return response.data.results
         })

@@ -2,35 +2,35 @@
   <div class="container-fluid">
     <div class="row d-flex justify-content-center">
       <div class="col-sm-8 mb-5">
-        <h1 class="text-success text-center Funciones">Cartelera</h1>
+        <h1 class="text-success text-center Funciones">Peliculas en Cartelera</h1>
       </div>
     </div>
     <div class="row d-flex justify-content-evenly">
       <div class="col d-flex flex-wrap">
         <div
           class="d-flex col mb-5 mx-6 justify-content-around"
-          v-for="Cartelera in Carteleras"
-          :key="Cartelera.id"
+          v-for="billboard in billboards"
+          :key="billboard.id"
         >
-          <router-link :to="{ path: '/MovieDetail/' + Cartelera.id }">
+          <router-link :to="{ path: '/MovieDetail/' + billboard.id }">
             <div class="card">
               <div class="card-image">
                 <img
                   class="img"
                   :src="
-                    `https://image.tmdb.org/t/p/w500` + Cartelera.poster_path
+                    `${imagen}` + billboard.poster_path
                   "
                   alt=""
                 />
-                <!-- {{ Cartelera.poster_path }} -->
+                <!-- {{ billboard.poster_path }} -->
               </div>
               <div class="text0">
-                <div class="category">{{ Cartelera.title }}</div>
+                <div class="category">{{ billboard.title }}</div>
                 <div class="heading">
-                  <strong>Popularidad: {{ Cartelera.popularity }}</strong>
+                  <strong>Popularidad: {{ billboard.popularity }}</strong>
                   <div class="author">
                     Fecha:
-                    <span class="name">{{ Cartelera.release_date }}</span>
+                    <span class="name">{{ billboard.release_date }}</span>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,8 @@ export default {
     name: 'CarteleraView',
     data() {
         return {
-            Carteleras: [],
+            billboards: [],
+            imagen: "https://image.tmdb.org/t/p/w500",
             page: 1,
             totalPages: 1,
             itemsPerPage: 10, // Número de elementos por página
@@ -79,8 +80,8 @@ export default {
     async created() {
       const Generoid = this.$route.params.id;
       this.Peliculas = await PelicService.getGenPeliculas(Generoid)
-      this.Carteleras = await PelicService.getCartelera(this.page)
-      console.log(this.Carteleras)
+      this.billboards = await PelicService.getCartelera(this.page)
+      console.log(this.billboards)
     }
 }
 </script>
